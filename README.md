@@ -1,7 +1,6 @@
 # browser-control
 
-Final semester project.
-
+COMS6998 Intro to DL and LLM Based GenAI Systems Final Semester Project
 ## Docs
 
 - [Project proposal](docs/proposal.md): the approved final project proposal
