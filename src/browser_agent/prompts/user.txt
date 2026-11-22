@@ -1,0 +1,7 @@
+Task: $intent
+
+Previous actions:
+$history
+
+Current page:
+$observation
