@@ -26,20 +26,20 @@ Every part of the project (collecting demonstrations, SFT, RLOO, GRPO, evaluatio
 
 ## Components
 
-| Module | Role | Owner |
-| --- | --- | --- |
-| `types.py` | Shared data types: `Action`, `Observation`, `StepRecord`, `Trajectory`, JSONL I/O | Shared |
-| `config.py` | Typed, layered YAML configs with CLI and environment-variable overrides | Jasmine |
-| `registry.py` | Name-based registries so configs can swap environments, policies, rewards and checks | Shared |
-| `env/base.py` | `BrowserEnv` interface: `reset`, `step`, `get_state` | Nicolas |
-| `env/playwright_env.py` | Playwright implementation shared by all sites: element ids, action execution, timeouts | Nicolas |
-| `env/mock_shop.py` | Local mock shopping site for development and tests | Gia |
-| `observe.py` | DOM → compact `Observation` (actionable elements, form errors, page text) and its text rendering | Nicolas |
-| `tasks.py`, `checks.py` | Task schema and loading; declarative success and subgoal checks on site state | Gia |
-| `rewards.py` | `binary` and `subgoal` rewards and the subgoal tracker | Gia |
-| `prompts/` | Editable prompt templates for `action_only` and `plan_then_act` | Nicolas |
-| `policy.py` | `Policy` interface, `scripted` demo replayer, `hf` Hugging Face model | Jasmine |
-| `rollout.py` | Episode loop, run summary and command-line entry point | Shared |
+| Module | Role |
+| --- | --- |
+| `types.py` | Shared data types: `Action`, `Observation`, `StepRecord`, `Trajectory`, JSONL I/O |
+| `config.py` | Typed, layered YAML configs with CLI and environment-variable overrides |
+| `registry.py` | Name-based registries so configs can swap environments, policies, rewards and checks |
+| `env/base.py` | `BrowserEnv` interface: `reset`, `step`, `get_state` |
+| `env/playwright_env.py` | Playwright implementation shared by all sites: element ids, action execution, timeouts |
+| `env/mock_shop.py` | Local mock shopping site for development and tests |
+| `observe.py` | DOM → compact `Observation` (actionable elements, form errors, page text) and its text rendering |
+| `tasks.py`, `checks.py` | Task schema and loading; declarative success and subgoal checks on site state |
+| `rewards.py` | `binary` and `subgoal` rewards and the subgoal tracker |
+| `prompts/` | Editable prompt templates for `action_only` and `plan_then_act` |
+| `policy.py` | `Policy` interface, `scripted` demo replayer, `hf` Hugging Face model |
+| `rollout.py` | Episode loop, run summary and command-line entry point |
 
 ## Key design decisions
 
