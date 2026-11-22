@@ -4,7 +4,7 @@ COMS6998 Intro to DL and LLM Based GenAI Systems Final Semester Project
 
 A browser-control agent for a self-hosted WebArena shopping site. We study how policy optimization (RLOO vs. GRPO), reward design (binary vs. bounded subgoal rewards) and reasoning prompts (action-only vs. plan-then-act) affect task completion, starting from a supervised fine-tuning (SFT) baseline on Qwen2.5-3B-Instruct.
 
-Team: Gia Yang, Jasmine Truong, Nicolas Hunt
+Team: Jasmine Truong, Gia Yang, Nicolas Hunt
 
 ## Setup
 
