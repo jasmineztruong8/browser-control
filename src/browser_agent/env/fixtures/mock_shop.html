@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mock Shop</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 20px; max-width: 760px; }
+  nav a { margin-right: 14px; }
+  form { margin: 12px 0; }
+  #errors:empty, #status:empty { display: none; }
+  #errors { color: #b00020; margin: 8px 0; }
+  #status { color: #1b5e20; margin: 8px 0; }
+  label { display: block; margin-top: 10px; }
+  table { border-collapse: collapse; margin-top: 10px; }
+  td, th { padding: 6px 10px; border-bottom: 1px solid #ddd; text-align: left; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="#home">Home</a>
+  <a href="#cart" id="cart-link">Cart (0)</a>
+</nav>
+<form id="search-form">
+  <input id="search" type="search" aria-label="Search" placeholder="Search products">
+  <button type="submit">Search</button>
+</form>
+<div id="errors" role="alert"></div>
+<div id="status" role="status"></div>
+<main id="main"></main>
+
+<script>
+// Catalog and site state. Tests and environments use window.shopApi (bottom of file).
+const CATALOG = [
+  { id: "mug", name: "Ceramic Coffee Mug", price: 12.0, optionName: "Color", options: ["Blue", "Red", "Green"] },
+  { id: "tshirt", name: "Cotton T-Shirt", price: 18.0, optionName: "Size", options: ["S", "M", "L"] },
+  { id: "headphones", name: "Wireless Headphones", price: 59.0, optionName: "Color", options: ["Black", "White"] },
+  { id: "notebook", name: "Spiral Notebook", price: 4.5, optionName: "Pack", options: ["1-pack", "3-pack"] },
+  { id: "bottle", name: "Steel Water Bottle", price: 22.0, optionName: "Size", options: ["500 ml", "1 L"] },
+];
+const MAX_QTY = 10;
+const state = { page: "home", cart: [], lastSearch: "" };
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const product = (id) => CATALOG.find((p) => p.id === id);
+const itemLabel = (item) => `${product(item.product_id).name} (${item.option})`;
+
+function setError(msg) { $("errors").textContent = msg || ""; }
+function setStatus(msg) { $("status").textContent = msg || ""; }
+
+function render() {
+  const route = decodeURIComponent((location.hash || "#home").slice(1));
+  state.page = route;
+  const count = state.cart.reduce((n, i) => n + i.quantity, 0);
+  $("cart-link").textContent = `Cart (${count})`;
+  const main = $("main");
+
+  if (route === "home") {
+    main.innerHTML = "<h1>Welcome to Mock Shop</h1><h2>Featured products</h2>" +
+      CATALOG.map((p) => `<div><a href="#product/${p.id}">${esc(p.name)}</a></div>`).join("");
+  } else if (route.startsWith("search/")) {
+    const q = route.slice("search/".length).toLowerCase();
+    const words = q.split(/\s+/).filter(Boolean);
+    const hits = CATALOG.filter((p) => words.some((w) => p.name.toLowerCase().includes(w)));
+    main.innerHTML = `<h1>Results for "${esc(q)}"</h1>` + (hits.length
+      ? hits.map((p) => `<div><a href="#product/${p.id}">${esc(p.name)}</a> - $${p.price.toFixed(2)}</div>`).join("")
+      : "<p>No products found.</p>");
+  } else if (route.startsWith("product/")) {
+    const p = product(route.slice("product/".length));
+    if (!p) { main.innerHTML = "<h1>Product not found</h1>"; return; }
+    main.innerHTML = `
+      <h1>${esc(p.name)}</h1>
+      <p>Price: $${p.price.toFixed(2)}</p>
+      <label for="option">${esc(p.optionName)}</label>
+      <select id="option">
+        <option value="">Choose a ${esc(p.optionName.toLowerCase())}</option>
+        ${p.options.map((o) => `<option value="${esc(o)}">${esc(o)}</option>`).join("")}
+      </select>
+      <label for="qty">Quantity</label>
+      <input id="qty" type="number" min="1" max="${MAX_QTY}" value="1">
+      <p><button id="add" data-product="${p.id}">Add to Cart</button></p>`;
+  } else if (route === "cart") {
+    if (!state.cart.length) { main.innerHTML = "<h1>Your cart</h1><p>Your cart is empty.</p>"; return; }
+    main.innerHTML = "<h1>Your cart</h1><table><tr><th>Item</th><th>Quantity</th><th></th></tr>" +
+      state.cart.map((item, i) => {
+        const label = esc(itemLabel(item));
+        return `<tr><td>${label}</td>
+          <td><input type="number" min="1" max="${MAX_QTY}" value="${item.quantity}" aria-label="Quantity for ${label}" data-index="${i}"></td>
+          <td><button data-update="${i}">Update ${label}</button>
+              <button data-remove="${i}">Remove ${label}</button></td></tr>`;
+      }).join("") + "</table>";
+  } else {
+    main.innerHTML = "<h1>Page not found</h1>";
+  }
+}
+
+function validQty(raw) {
+  const n = Number(raw);
+  return Number.isInteger(n) && n >= 1 && n <= MAX_QTY ? n : null;
+}
+
+$("search-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const q = $("search").value.trim();
+  if (!q) { setError("Please enter a search term."); return; }
+  state.lastSearch = q;
+  location.hash = "search/" + encodeURIComponent(q);
+});
+
+$("main").addEventListener("click", (e) => {
+  const t = e.target;
+  if (t.id === "add") {
+    const p = product(t.dataset.product);
+    const option = $("option").value;
+    const qty = validQty($("qty").value);
+    if (!option) { setError(`Please choose a ${p.optionName.toLowerCase()}.`); return; }
+    if (qty === null) { setError(`Quantity must be between 1 and ${MAX_QTY}.`); return; }
+    const existing = state.cart.find((i) => i.product_id === p.id && i.option === option);
+    if (existing) existing.quantity = Math.min(MAX_QTY, existing.quantity + qty);
+    else state.cart.push({ product_id: p.id, option, quantity: qty });
+    setError(""); setStatus(`Added ${qty} x ${p.name} (${option}) to your cart.`);
+    render();
+  } else if (t.dataset.update !== undefined) {
+    const i = Number(t.dataset.update);
+    const input = document.querySelector(`input[data-index="${i}"]`);
+    const qty = validQty(input.value);
+    if (qty === null) { setError(`Quantity must be between 1 and ${MAX_QTY}.`); return; }
+    state.cart[i].quantity = qty;
+    setError(""); setStatus("Cart updated.");
+    render();
+  } else if (t.dataset.remove !== undefined) {
+    const [removed] = state.cart.splice(Number(t.dataset.remove), 1);
+    setError(""); setStatus(`Removed ${itemLabel(removed)}.`);
+    render();
+  }
+});
+
+window.addEventListener("hashchange", () => { setError(""); setStatus(""); render(); });
+
+window.shopApi = {
+  setState(s) {
+    if (s.cart) state.cart = s.cart.map((i) => ({ ...i }));
+    if (s.lastSearch !== undefined) state.lastSearch = s.lastSearch;
+    render();
+  },
+  getState() {
+    return { page: state.page, cart: state.cart.map((i) => ({ ...i })), last_search: state.lastSearch };
+  },
+};
+
+render();
+</script>
+</body>
+</html>

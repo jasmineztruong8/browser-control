@@ -1,0 +1,13 @@
+# Reasoning-prompt comparison: brief plan before each action, same token/action limits.
+# Run against the same checkpoint as the action-only evaluation, e.g.
+#   --set policy.adapter_path=checkpoints/<run> tasks.split=test
+inherits: base.yaml
+
+run:
+  name: eval_plan_then_act
+
+policy:
+  name: hf
+
+prompt:
+  mode: plan_then_act

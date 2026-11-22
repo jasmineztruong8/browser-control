@@ -1,0 +1,8 @@
+# Condition C: GRPO with the same binary reward as Condition B.
+inherits: rloo.yaml
+
+run:
+  name: grpo_binary
+
+training:
+  method: grpo

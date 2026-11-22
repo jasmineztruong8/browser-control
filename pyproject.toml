@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "browser-agent"
+version = "0.1.0"
+description = "RL-trained browser-control agent for a self-hosted WebArena shopping site"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pydantic>=2.6",
+  "pyyaml>=6.0",
+  "python-dotenv>=1.0",
+  "playwright>=1.44",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+# Heavy GPU dependencies, kept separate so the core package and tests install on any laptop.
+train = [
+  "torch>=2.3",
+  "transformers>=4.44",
+  "peft>=0.12",
+  "trl>=0.11",
+  "accelerate>=0.33",
+  "bitsandbytes>=0.43; platform_system == 'Linux'",
+]
+
+[project.scripts]
+browser-agent-rollout = "browser_agent.rollout:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/browser_agent"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["browser: test launches a headless Chromium via Playwright"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501", "B027"]  # line length is left to the formatter; empty close() hooks are intentional
+
+[tool.ruff.lint.isort]
+known-first-party = ["browser_agent", "conftest"]

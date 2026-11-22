@@ -1,0 +1,170 @@
+{
+  "description": "Sample tasks for the local mock shop (three workflow families). Used for development and tests; the WebArena task set will live in its own file.",
+  "tasks": [
+    {
+      "id": "add_mug_blue_1",
+      "family": "add_to_cart",
+      "split": "train",
+      "intent": "Add one blue Ceramic Coffee Mug to the cart.",
+      "success": [
+        {"check": "cart_exact", "items": [{"product_id": "mug", "option": "Blue", "quantity": 1}]}
+      ],
+      "subgoals": [
+        {"id": "searched", "check": "search_contains", "text": "mug"},
+        {"id": "on_product_page", "check": "page_is", "route": "product/mug"},
+        {"id": "product_in_cart", "check": "cart_contains", "product_id": "mug"}
+      ],
+      "demo": [
+        {"action": "type", "target": "Search", "text": "mug", "submit": true},
+        {"action": "click", "target": "Ceramic Coffee Mug", "role": "link"},
+        {"action": "type", "target": "Color", "text": "Blue"},
+        {"action": "click", "target": "Add to Cart"},
+        {"action": "stop"}
+      ]
+    },
+    {
+      "id": "add_tshirt_m_2",
+      "family": "add_to_cart",
+      "split": "train",
+      "intent": "Add two Cotton T-Shirts in size M to the cart.",
+      "success": [
+        {"check": "cart_exact", "items": [{"product_id": "tshirt", "option": "M", "quantity": 2}]}
+      ],
+      "subgoals": [
+        {"id": "searched", "check": "search_contains", "text": "shirt"},
+        {"id": "on_product_page", "check": "page_is", "route": "product/tshirt"},
+        {"id": "product_in_cart", "check": "cart_contains", "product_id": "tshirt"}
+      ],
+      "demo": [
+        {"action": "type", "target": "Search", "text": "t-shirt", "submit": true},
+        {"action": "click", "target": "Cotton T-Shirt", "role": "link"},
+        {"action": "type", "target": "Size", "text": "M"},
+        {"action": "type", "target": "Quantity", "text": "2"},
+        {"action": "click", "target": "Add to Cart"},
+        {"action": "stop"}
+      ]
+    },
+    {
+      "id": "update_headphones_3",
+      "family": "update_quantity",
+      "split": "train",
+      "intent": "Change the quantity of Wireless Headphones (Black) in the cart to 3.",
+      "initial_state": {"cart": [{"product_id": "headphones", "option": "Black", "quantity": 1}]},
+      "success": [
+        {"check": "cart_exact", "items": [{"product_id": "headphones", "option": "Black", "quantity": 3}]}
+      ],
+      "subgoals": [
+        {"id": "on_cart_page", "check": "page_is", "route": "cart"}
+      ],
+      "demo": [
+        {"action": "click", "target": "Cart", "role": "link"},
+        {"action": "type", "target": "Quantity for Wireless Headphones (Black)", "text": "3"},
+        {"action": "click", "target": "Update Wireless Headphones (Black)"},
+        {"action": "stop"}
+      ]
+    },
+    {
+      "id": "remove_notebook",
+      "family": "remove_item",
+      "split": "train",
+      "intent": "Remove the Spiral Notebook from the cart and keep everything else.",
+      "initial_state": {"cart": [
+        {"product_id": "mug", "option": "Red", "quantity": 1},
+        {"product_id": "notebook", "option": "3-pack", "quantity": 1}
+      ]},
+      "success": [
+        {"check": "cart_exact", "items": [{"product_id": "mug", "option": "Red", "quantity": 1}]}
+      ],
+      "subgoals": [
+        {"id": "on_cart_page", "check": "page_is", "route": "cart"}
+      ],
+      "demo": [
+        {"action": "click", "target": "Cart", "role": "link"},
+        {"action": "click", "target": "Remove Spiral Notebook (3-pack)"},
+        {"action": "stop"}
+      ]
+    },
+    {
+      "id": "add_bottle_1l_1",
+      "family": "add_to_cart",
+      "split": "val",
+      "intent": "Add one 1 L Steel Water Bottle to the cart.",
+      "success": [
+        {"check": "cart_exact", "items": [{"product_id": "bottle", "option": "1 L", "quantity": 1}]}
+      ],
+      "subgoals": [
+        {"id": "searched", "check": "search_contains", "text": "bottle"},
+        {"id": "on_product_page", "check": "page_is", "route": "product/bottle"},
+        {"id": "product_in_cart", "check": "cart_contains", "product_id": "bottle"}
+      ],
+      "demo": [
+        {"action": "type", "target": "Search", "text": "water bottle", "submit": true},
+        {"action": "click", "target": "Steel Water Bottle", "role": "link"},
+        {"action": "type", "target": "Size", "text": "1 L"},
+        {"action": "click", "target": "Add to Cart"},
+        {"action": "stop"}
+      ]
+    },
+    {
+      "id": "update_mug_2",
+      "family": "update_quantity",
+      "split": "val",
+      "intent": "Change the quantity of Ceramic Coffee Mug (Green) in the cart to 2.",
+      "initial_state": {"cart": [{"product_id": "mug", "option": "Green", "quantity": 4}]},
+      "success": [
+        {"check": "cart_exact", "items": [{"product_id": "mug", "option": "Green", "quantity": 2}]}
+      ],
+      "subgoals": [
+        {"id": "on_cart_page", "check": "page_is", "route": "cart"}
+      ],
+      "demo": [
+        {"action": "click", "target": "Cart", "role": "link"},
+        {"action": "type", "target": "Quantity for Ceramic Coffee Mug (Green)", "text": "2"},
+        {"action": "click", "target": "Update Ceramic Coffee Mug (Green)"},
+        {"action": "stop"}
+      ]
+    },
+    {
+      "id": "add_headphones_white_1",
+      "family": "add_to_cart",
+      "split": "test",
+      "intent": "Add one pair of white Wireless Headphones to the cart.",
+      "success": [
+        {"check": "cart_exact", "items": [{"product_id": "headphones", "option": "White", "quantity": 1}]}
+      ],
+      "subgoals": [
+        {"id": "searched", "check": "search_contains", "text": "headphones"},
+        {"id": "on_product_page", "check": "page_is", "route": "product/headphones"},
+        {"id": "product_in_cart", "check": "cart_contains", "product_id": "headphones"}
+      ],
+      "demo": [
+        {"action": "type", "target": "Search", "text": "headphones", "submit": true},
+        {"action": "click", "target": "Wireless Headphones", "role": "link"},
+        {"action": "type", "target": "Color", "text": "White"},
+        {"action": "click", "target": "Add to Cart"},
+        {"action": "stop"}
+      ]
+    },
+    {
+      "id": "remove_tshirt",
+      "family": "remove_item",
+      "split": "test",
+      "intent": "Remove the Cotton T-Shirt from the cart and keep everything else.",
+      "initial_state": {"cart": [
+        {"product_id": "tshirt", "option": "L", "quantity": 1},
+        {"product_id": "bottle", "option": "500 ml", "quantity": 2}
+      ]},
+      "success": [
+        {"check": "cart_exact", "items": [{"product_id": "bottle", "option": "500 ml", "quantity": 2}]}
+      ],
+      "subgoals": [
+        {"id": "on_cart_page", "check": "page_is", "route": "cart"}
+      ],
+      "demo": [
+        {"action": "click", "target": "Cart", "role": "link"},
+        {"action": "click", "target": "Remove Cotton T-Shirt (L)"},
+        {"action": "stop"}
+      ]
+    }
+  ]
+}

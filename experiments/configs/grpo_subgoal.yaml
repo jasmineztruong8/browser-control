@@ -1,0 +1,8 @@
+# Condition D: GRPO with binary success plus bounded, verified subgoal rewards.
+inherits: grpo_binary.yaml
+
+run:
+  name: grpo_subgoal
+
+reward:
+  type: subgoal

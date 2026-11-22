@@ -1,0 +1,17 @@
+# Condition B: RLOO from the SFT checkpoint with binary task-success reward.
+inherits: base.yaml
+
+run:
+  name: rloo
+
+policy:
+  name: hf
+  temperature: 0.7           # sampling is needed for RL exploration
+
+reward:
+  type: binary
+
+training:
+  method: rloo
+  init_checkpoint: checkpoints/sft   # same SFT checkpoint for every RL condition
+  group_size: 4

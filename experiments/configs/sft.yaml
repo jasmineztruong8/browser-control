@@ -1,0 +1,13 @@
+# Condition A: supervised fine-tuning on verified demonstrations.
+inherits: base.yaml
+
+run:
+  name: sft
+
+policy:
+  name: hf
+
+training:
+  method: sft
+  learning_rate: 2.0e-4
+  epochs: 3
