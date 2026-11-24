@@ -12,9 +12,9 @@ Develop a browser-control agent for one self-hosted shopping website and investi
 - Four main experimental conditions, with recovery-focused training as an optional extension.
 - Planning assumption: approximately 8–10 active hours per person per week, plus unattended training jobs.
 
-## Team Responsibilities
+## Workstreams
 
-### Gia: Environment, tasks, and rewards
+### Environment, tasks, and rewards
 
 - Deploy the website and implement reliable environment resets.
 - Create task instances and train/validation/test splits.
@@ -22,7 +22,7 @@ Develop a browser-control agent for one self-hosted shopping website and investi
 - Lead the reward-design experiment.
 - Write the environment, dataset, and reward-design sections.
 
-### Jasmine: Model training and compute
+### Model training and compute
 
 - Confirm the model checkpoint, GPU availability, and compute budget.
 - Prepare demonstrations and train the SFT baseline.
@@ -30,7 +30,7 @@ Develop a browser-control agent for one self-hosted shopping website and investi
 - Track memory usage, training stability, and GPU hours.
 - Write the training-methods and compute-analysis sections.
 
-### Nicolas: Browser integration, evaluation, and demo
+### Browser integration, evaluation, and demo
 
 - Implement DOM extraction, action execution, and trajectory logging.
 - Integrate GRPO with the shared browser rollout pipeline.
@@ -38,7 +38,7 @@ Develop a browser-control agent for one self-hosted shopping website and investi
 - Coordinate the working demo and results figures.
 - Write the evaluation, results, and reproduction instructions.
 
-Everyone will review experimental decisions, run at least one training or evaluation job, contribute to the presentation, and review another teammate's report section.
+Work is shared across the team. All members review experimental decisions, run training or evaluation jobs, contribute to the presentation, and review each other's report sections.
 
 ## Experiment Plan
 
@@ -54,51 +54,51 @@ Every RL condition will start independently from the same SFT checkpoint. Traini
 
 ### November 12–15: Environment Setup and Compute Pilot
 
-- **Gia:** Deploy the website, implement resets, and define correct outcomes for each workflow. Test whether success checks reject incorrect products, variants, quantities, and false completion claims.
-- **Jasmine:** Confirm GPU specifications and credits. Load the selected model and adapter configuration, then measure memory and runtime for a small training update.
-- **Nicolas:** Connect browser observations to a fixed DOM/action format. Implement `click`, `type`, `scroll`, and `stop` actions, along with timeouts and episode logs.
+- **Environment:** Deploy the website, implement resets, and define correct outcomes for each workflow. Test whether success checks reject incorrect products, variants, quantities, and false completion claims.
+- **Training:** Confirm GPU specifications and credits. Load the selected model and adapter configuration, then measure memory and runtime for a small training update.
+- **Evaluation:** Connect browser observations to a fixed DOM/action format. Implement `click`, `type`, `scroll`, and `stop` actions, along with timeouts and episode logs.
 - **Together:** Agree on the shared trajectory format and verify that both RL implementations can use it.
 
 **Milestone:** Complete one browser episode, calculate its reward, reset the environment, perform a real RL update, and save/reload the adapter. Use these measurements to confirm or reduce the planned scope.
 
 ### November 16–20: Demonstrations and SFT Baseline
 
-- **Gia:** Create versioned task splits and collect approximately 50–100 verified short demonstrations using human actions or parameterized scripts.
-- **Jasmine:** Convert demonstrations into observation/action training examples, train the SFT adapter, and select a checkpoint using validation tasks.
-- **Nicolas:** Finish the reusable evaluation runner and build a basic text-input demo. Log actions, outcomes, tokens, latency, and model configuration.
+- **Environment:** Create versioned task splits and collect approximately 50–100 verified short demonstrations using human actions or parameterized scripts.
+- **Training:** Convert demonstrations into observation/action training examples, train the SFT adapter, and select a checkpoint using validation tasks.
+- **Evaluation:** Finish the reusable evaluation runner and build a basic text-input demo. Log actions, outcomes, tokens, latency, and model configuration.
 
 **Milestone:** A saved SFT checkpoint, reproducible baseline results, and a working evaluation command. Freeze the main observation and action formats before comparing RL methods.
 
 ### November 21–24: Basic RL Baseline
 
-- **Jasmine:** Train Condition B using RLOO and binary success rewards.
-- **Gia:** Audit reward correctness and examine whether training tasks provide a useful mix of successful and unsuccessful attempts.
-- **Nicolas:** Review trajectory handling with Jasmine and test GRPO on a small pilot using the same interface.
+- **Training:** Train Condition B using RLOO and binary success rewards.
+- **Environment:** Audit reward correctness and examine whether training tasks provide a useful mix of successful and unsuccessful attempts.
+- **Evaluation:** Review trajectory handling with the training workstream and test GRPO on a small pilot using the same interface.
 
 **Milestone:** A reproducible RLOO run with learning curves, saved weights, and measured compute usage. Resolve training, reset, and evaluator errors before larger comparisons.
 
 ### November 25–28: Policy-Optimization Comparison
 
-- **Nicolas:** Train Condition C using GRPO and the same binary reward as Condition B.
-- **Jasmine:** Verify shared initialization, comparable training-interaction budgets, and consistent evaluation settings.
-- **Gia:** Implement and test intermediate-progress rewards for the next experiment, ensuring repeated actions cannot repeatedly earn the same bonus.
+- **Evaluation:** Train Condition C using GRPO and the same binary reward as Condition B.
+- **Training:** Verify shared initialization, comparable training-interaction budgets, and consistent evaluation settings.
+- **Environment:** Implement and test intermediate-progress rewards for the next experiment, ensuring repeated actions cannot repeatedly earn the same bonus.
 - **Together:** Schedule long-running jobs around Thanksgiving availability.
 
 **Milestone:** A controlled RLOO-versus-GRPO comparison covering task success, training stability, interaction efficiency, and compute cost.
 
 ### November 29–December 2: Reward and Reasoning Experiments
 
-- **Gia:** Train Condition D using binary success plus bounded bonuses for verified subgoals.
-- **Jasmine:** Review reward behavior and repeat the most important comparison with another seed if compute permits.
-- **Nicolas:** Compare action-only and brief-plan prompts. Freeze configurations, evaluate Conditions A–D on held-out tasks, and summarize failures and uncertainty.
+- **Environment:** Train Condition D using binary success plus bounded bonuses for verified subgoals.
+- **Training:** Review reward behavior and repeat the most important comparison with another seed if compute permits.
+- **Evaluation:** Compare action-only and brief-plan prompts. Freeze configurations, evaluate Conditions A–D on held-out tasks, and summarize failures and uncertainty.
 
 **Milestone:** Main experiments and test results complete by December 2.
 
 ### December 3–6: Demo, Analysis, and Presentation
 
-- **Gia:** Verify clean website startup and repeatable resets. Document environment limitations and review references.
-- **Jasmine:** Finalize training curves, compute tables, and explanations of the RL methods.
-- **Nicolas:** Stabilize the demo, prepare results figures, and record a backup demonstration.
+- **Environment:** Verify clean website startup and repeatable resets. Document environment limitations and review references.
+- **Training:** Finalize training curves, compute tables, and explanations of the RL methods.
+- **Evaluation:** Stabilize the demo, prepare results figures, and record a backup demonstration.
 - **Together:** Draft the report, prepare slides, and rehearse the presentation.
 
 **Milestone:** Freeze the demo by December 5. Have a report draft and setup instructions ready, with another teammate successfully launching the project from the README.
