@@ -63,7 +63,16 @@ def subgoal_reward(task, state, answer, stopped, subgoals_hit, cfg: RewardConfig
 
     The bonus is capped at ``subgoal_cap`` < ``success_reward`` (enforced by the config), so a
     failed episode can never out-score a successful one.
+
+    With ``subgoal_normalize`` the bonus is ``subgoal_cap`` times the fraction of the task's own
+    subgoals hit, so every task family can earn the same maximum bonus regardless of how many
+    subgoals it defines (add-to-cart tasks have 3, update/remove tasks have 2).
     """
     success = task_success(task, state, answer, stopped, cfg)
-    bonus = min(cfg.subgoal_cap, cfg.subgoal_bonus * len(set(subgoals_hit)))
+    if cfg.subgoal_normalize:
+        ids = {s.id for s in task.subgoals}
+        frac = len(set(subgoals_hit) & ids) / len(ids) if ids else 0.0
+        bonus = cfg.subgoal_cap * frac
+    else:
+        bonus = min(cfg.subgoal_cap, cfg.subgoal_bonus * len(set(subgoals_hit)))
     return RewardResult(reward=(cfg.success_reward if success else 0.0) + bonus, success=success)
