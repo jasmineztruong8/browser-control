@@ -55,6 +55,7 @@ src/browser_agent/      shared code used by experiments and the demo
   prompts/              editable prompt templates (action_only, plan_then_act)
   policy.py             scripted and Hugging Face policies
   tasks.py, checks.py   task schema and success/subgoal checks
+  generate_tasks.py     mock-shop task generator with versioned train/val/test splits
   rewards.py            binary and subgoal rewards
   rollout.py            episode loop + CLI
 experiments/configs/    base.yaml + one config per experimental condition
