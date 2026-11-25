@@ -178,7 +178,13 @@ def _add_to_cart(product: Product, option: str, quantity: int) -> dict[str, Any]
         "subgoals": [
             {"id": "searched", "check": "search_contains", "text": product.search},
             {"id": "on_product_page", "check": "page_is", "route": f"product/{product.id}"},
-            {"id": "product_in_cart", "check": "cart_contains", "product_id": product.id},
+            # Option-aware, so adding the wrong variant earns nothing (same as mock_shop.json).
+            {
+                "id": "product_in_cart",
+                "check": "cart_contains",
+                "product_id": product.id,
+                "option": option,
+            },
         ],
         "demo": _demo(*steps),
     }
@@ -202,7 +208,16 @@ def _update_quantity(
         "intent": intent,
         "initial_state": {"cart": cart},
         "success": [{"check": "cart_exact", "items": expected}],
-        "subgoals": [{"id": "on_cart_page", "check": "page_is", "route": "cart"}],
+        "subgoals": [
+            {"id": "on_cart_page", "check": "page_is", "route": "cart"},
+            {
+                "id": "quantity_updated",
+                "check": "cart_quantity",
+                "product_id": product.id,
+                "option": option,
+                "quantity": target,
+            },
+        ],
         "demo": _demo(
             {"action": "click", "target": "Cart", "role": "link"},
             {"action": "type", "target": f"Quantity for {label}", "text": str(target)},
@@ -226,7 +241,15 @@ def _remove_item(
         "intent": f"Remove the {label} from the cart and keep everything else.",
         "initial_state": {"cart": cart},
         "success": [{"check": "cart_exact", "items": expected}],
-        "subgoals": [{"id": "on_cart_page", "check": "page_is", "route": "cart"}],
+        "subgoals": [
+            {"id": "on_cart_page", "check": "page_is", "route": "cart"},
+            {
+                "id": "target_removed",
+                "check": "cart_not_contains",
+                "product_id": product.id,
+                "option": option,
+            },
+        ],
         "demo": _demo(
             {"action": "click", "target": "Cart", "role": "link"},
             {"action": "click", "target": f"Remove {label}"},

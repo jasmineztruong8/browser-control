@@ -42,7 +42,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "mug"
+          "product_id": "mug",
+          "option": "Blue"
         }
       ],
       "demo": [
@@ -102,7 +103,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "mug"
+          "product_id": "mug",
+          "option": "Blue"
         }
       ],
       "demo": [
@@ -167,7 +169,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "mug"
+          "product_id": "mug",
+          "option": "Blue"
         }
       ],
       "demo": [
@@ -232,7 +235,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "mug"
+          "product_id": "mug",
+          "option": "Blue"
         }
       ],
       "demo": [
@@ -297,7 +301,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "mug"
+          "product_id": "mug",
+          "option": "Red"
         }
       ],
       "demo": [
@@ -357,7 +362,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "mug"
+          "product_id": "mug",
+          "option": "Red"
         }
       ],
       "demo": [
@@ -422,7 +428,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "mug"
+          "product_id": "mug",
+          "option": "Red"
         }
       ],
       "demo": [
@@ -487,7 +494,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "mug"
+          "product_id": "mug",
+          "option": "Red"
         }
       ],
       "demo": [
@@ -552,7 +560,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "mug"
+          "product_id": "mug",
+          "option": "Green"
         }
       ],
       "demo": [
@@ -612,7 +621,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "mug"
+          "product_id": "mug",
+          "option": "Green"
         }
       ],
       "demo": [
@@ -677,7 +687,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "mug"
+          "product_id": "mug",
+          "option": "Green"
         }
       ],
       "demo": [
@@ -742,7 +753,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "mug"
+          "product_id": "mug",
+          "option": "Green"
         }
       ],
       "demo": [
@@ -807,7 +819,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "tshirt"
+          "product_id": "tshirt",
+          "option": "S"
         }
       ],
       "demo": [
@@ -867,7 +880,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "tshirt"
+          "product_id": "tshirt",
+          "option": "S"
         }
       ],
       "demo": [
@@ -932,7 +946,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "tshirt"
+          "product_id": "tshirt",
+          "option": "S"
         }
       ],
       "demo": [
@@ -997,7 +1012,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "tshirt"
+          "product_id": "tshirt",
+          "option": "S"
         }
       ],
       "demo": [
@@ -1062,7 +1078,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "tshirt"
+          "product_id": "tshirt",
+          "option": "M"
         }
       ],
       "demo": [
@@ -1122,7 +1139,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "tshirt"
+          "product_id": "tshirt",
+          "option": "M"
         }
       ],
       "demo": [
@@ -1187,7 +1205,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "tshirt"
+          "product_id": "tshirt",
+          "option": "M"
         }
       ],
       "demo": [
@@ -1252,7 +1271,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "tshirt"
+          "product_id": "tshirt",
+          "option": "M"
         }
       ],
       "demo": [
@@ -1317,7 +1337,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "tshirt"
+          "product_id": "tshirt",
+          "option": "L"
         }
       ],
       "demo": [
@@ -1377,7 +1398,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "tshirt"
+          "product_id": "tshirt",
+          "option": "L"
         }
       ],
       "demo": [
@@ -1442,7 +1464,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "tshirt"
+          "product_id": "tshirt",
+          "option": "L"
         }
       ],
       "demo": [
@@ -1507,7 +1530,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "tshirt"
+          "product_id": "tshirt",
+          "option": "L"
         }
       ],
       "demo": [
@@ -1572,7 +1596,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "headphones"
+          "product_id": "headphones",
+          "option": "Black"
         }
       ],
       "demo": [
@@ -1632,7 +1657,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "headphones"
+          "product_id": "headphones",
+          "option": "Black"
         }
       ],
       "demo": [
@@ -1697,7 +1723,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "headphones"
+          "product_id": "headphones",
+          "option": "Black"
         }
       ],
       "demo": [
@@ -1762,7 +1789,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "headphones"
+          "product_id": "headphones",
+          "option": "Black"
         }
       ],
       "demo": [
@@ -1827,7 +1855,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "headphones"
+          "product_id": "headphones",
+          "option": "White"
         }
       ],
       "demo": [
@@ -1887,7 +1916,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "headphones"
+          "product_id": "headphones",
+          "option": "White"
         }
       ],
       "demo": [
@@ -1952,7 +1982,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "headphones"
+          "product_id": "headphones",
+          "option": "White"
         }
       ],
       "demo": [
@@ -2017,7 +2048,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "headphones"
+          "product_id": "headphones",
+          "option": "White"
         }
       ],
       "demo": [
@@ -2082,7 +2114,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "notebook"
+          "product_id": "notebook",
+          "option": "1-pack"
         }
       ],
       "demo": [
@@ -2142,7 +2175,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "notebook"
+          "product_id": "notebook",
+          "option": "1-pack"
         }
       ],
       "demo": [
@@ -2207,7 +2241,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "notebook"
+          "product_id": "notebook",
+          "option": "1-pack"
         }
       ],
       "demo": [
@@ -2272,7 +2307,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "notebook"
+          "product_id": "notebook",
+          "option": "1-pack"
         }
       ],
       "demo": [
@@ -2337,7 +2373,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "notebook"
+          "product_id": "notebook",
+          "option": "3-pack"
         }
       ],
       "demo": [
@@ -2397,7 +2434,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "notebook"
+          "product_id": "notebook",
+          "option": "3-pack"
         }
       ],
       "demo": [
@@ -2462,7 +2500,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "notebook"
+          "product_id": "notebook",
+          "option": "3-pack"
         }
       ],
       "demo": [
@@ -2527,7 +2566,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "notebook"
+          "product_id": "notebook",
+          "option": "3-pack"
         }
       ],
       "demo": [
@@ -2592,7 +2632,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "bottle"
+          "product_id": "bottle",
+          "option": "500 ml"
         }
       ],
       "demo": [
@@ -2652,7 +2693,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "bottle"
+          "product_id": "bottle",
+          "option": "500 ml"
         }
       ],
       "demo": [
@@ -2717,7 +2759,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "bottle"
+          "product_id": "bottle",
+          "option": "500 ml"
         }
       ],
       "demo": [
@@ -2782,7 +2825,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "bottle"
+          "product_id": "bottle",
+          "option": "500 ml"
         }
       ],
       "demo": [
@@ -2847,7 +2891,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "bottle"
+          "product_id": "bottle",
+          "option": "1 L"
         }
       ],
       "demo": [
@@ -2907,7 +2952,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "bottle"
+          "product_id": "bottle",
+          "option": "1 L"
         }
       ],
       "demo": [
@@ -2972,7 +3018,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "bottle"
+          "product_id": "bottle",
+          "option": "1 L"
         }
       ],
       "demo": [
@@ -3037,7 +3084,8 @@
         {
           "id": "product_in_cart",
           "check": "cart_contains",
-          "product_id": "bottle"
+          "product_id": "bottle",
+          "option": "1 L"
         }
       ],
       "demo": [
@@ -3102,6 +3150,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "mug",
+          "option": "Blue",
+          "quantity": 3
         }
       ],
       "demo": [
@@ -3165,6 +3220,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "mug",
+          "option": "Blue",
+          "quantity": 2
         }
       ],
       "demo": [
@@ -3228,6 +3290,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "mug",
+          "option": "Blue",
+          "quantity": 5
         }
       ],
       "demo": [
@@ -3281,6 +3350,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "mug",
+          "option": "Red",
+          "quantity": 3
         }
       ],
       "demo": [
@@ -3344,6 +3420,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "mug",
+          "option": "Red",
+          "quantity": 2
         }
       ],
       "demo": [
@@ -3407,6 +3490,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "mug",
+          "option": "Red",
+          "quantity": 5
         }
       ],
       "demo": [
@@ -3460,6 +3550,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "mug",
+          "option": "Green",
+          "quantity": 3
         }
       ],
       "demo": [
@@ -3523,6 +3620,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "mug",
+          "option": "Green",
+          "quantity": 2
         }
       ],
       "demo": [
@@ -3586,6 +3690,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "mug",
+          "option": "Green",
+          "quantity": 5
         }
       ],
       "demo": [
@@ -3639,6 +3750,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "tshirt",
+          "option": "S",
+          "quantity": 3
         }
       ],
       "demo": [
@@ -3702,6 +3820,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "tshirt",
+          "option": "S",
+          "quantity": 2
         }
       ],
       "demo": [
@@ -3765,6 +3890,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "tshirt",
+          "option": "S",
+          "quantity": 5
         }
       ],
       "demo": [
@@ -3818,6 +3950,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "tshirt",
+          "option": "M",
+          "quantity": 3
         }
       ],
       "demo": [
@@ -3881,6 +4020,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "tshirt",
+          "option": "M",
+          "quantity": 2
         }
       ],
       "demo": [
@@ -3944,6 +4090,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "tshirt",
+          "option": "M",
+          "quantity": 5
         }
       ],
       "demo": [
@@ -3997,6 +4150,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "tshirt",
+          "option": "L",
+          "quantity": 3
         }
       ],
       "demo": [
@@ -4060,6 +4220,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "tshirt",
+          "option": "L",
+          "quantity": 2
         }
       ],
       "demo": [
@@ -4123,6 +4290,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "tshirt",
+          "option": "L",
+          "quantity": 5
         }
       ],
       "demo": [
@@ -4176,6 +4350,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "headphones",
+          "option": "Black",
+          "quantity": 3
         }
       ],
       "demo": [
@@ -4239,6 +4420,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "headphones",
+          "option": "Black",
+          "quantity": 2
         }
       ],
       "demo": [
@@ -4302,6 +4490,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "headphones",
+          "option": "Black",
+          "quantity": 5
         }
       ],
       "demo": [
@@ -4355,6 +4550,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "headphones",
+          "option": "White",
+          "quantity": 3
         }
       ],
       "demo": [
@@ -4418,6 +4620,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "headphones",
+          "option": "White",
+          "quantity": 2
         }
       ],
       "demo": [
@@ -4481,6 +4690,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "headphones",
+          "option": "White",
+          "quantity": 5
         }
       ],
       "demo": [
@@ -4534,6 +4750,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "notebook",
+          "option": "1-pack",
+          "quantity": 3
         }
       ],
       "demo": [
@@ -4597,6 +4820,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "notebook",
+          "option": "1-pack",
+          "quantity": 2
         }
       ],
       "demo": [
@@ -4660,6 +4890,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "notebook",
+          "option": "1-pack",
+          "quantity": 5
         }
       ],
       "demo": [
@@ -4713,6 +4950,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "notebook",
+          "option": "3-pack",
+          "quantity": 3
         }
       ],
       "demo": [
@@ -4776,6 +5020,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "notebook",
+          "option": "3-pack",
+          "quantity": 2
         }
       ],
       "demo": [
@@ -4839,6 +5090,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "notebook",
+          "option": "3-pack",
+          "quantity": 5
         }
       ],
       "demo": [
@@ -4892,6 +5150,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "bottle",
+          "option": "500 ml",
+          "quantity": 3
         }
       ],
       "demo": [
@@ -4955,6 +5220,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "bottle",
+          "option": "500 ml",
+          "quantity": 2
         }
       ],
       "demo": [
@@ -5018,6 +5290,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "bottle",
+          "option": "500 ml",
+          "quantity": 5
         }
       ],
       "demo": [
@@ -5071,6 +5350,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "bottle",
+          "option": "1 L",
+          "quantity": 3
         }
       ],
       "demo": [
@@ -5134,6 +5420,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "bottle",
+          "option": "1 L",
+          "quantity": 2
         }
       ],
       "demo": [
@@ -5197,6 +5490,13 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "quantity_updated",
+          "check": "cart_quantity",
+          "product_id": "bottle",
+          "option": "1 L",
+          "quantity": 5
         }
       ],
       "demo": [
@@ -5255,6 +5555,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "mug",
+          "option": "Blue"
         }
       ],
       "demo": [
@@ -5318,6 +5624,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "mug",
+          "option": "Blue"
         }
       ],
       "demo": [
@@ -5371,6 +5683,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "mug",
+          "option": "Red"
         }
       ],
       "demo": [
@@ -5434,6 +5752,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "mug",
+          "option": "Red"
         }
       ],
       "demo": [
@@ -5487,6 +5811,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "mug",
+          "option": "Green"
         }
       ],
       "demo": [
@@ -5550,6 +5880,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "mug",
+          "option": "Green"
         }
       ],
       "demo": [
@@ -5603,6 +5939,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "tshirt",
+          "option": "S"
         }
       ],
       "demo": [
@@ -5666,6 +6008,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "tshirt",
+          "option": "S"
         }
       ],
       "demo": [
@@ -5719,6 +6067,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "tshirt",
+          "option": "M"
         }
       ],
       "demo": [
@@ -5782,6 +6136,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "tshirt",
+          "option": "M"
         }
       ],
       "demo": [
@@ -5835,6 +6195,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "tshirt",
+          "option": "L"
         }
       ],
       "demo": [
@@ -5898,6 +6264,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "tshirt",
+          "option": "L"
         }
       ],
       "demo": [
@@ -5951,6 +6323,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "headphones",
+          "option": "Black"
         }
       ],
       "demo": [
@@ -6014,6 +6392,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "headphones",
+          "option": "Black"
         }
       ],
       "demo": [
@@ -6067,6 +6451,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "headphones",
+          "option": "White"
         }
       ],
       "demo": [
@@ -6130,6 +6520,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "headphones",
+          "option": "White"
         }
       ],
       "demo": [
@@ -6183,6 +6579,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "notebook",
+          "option": "1-pack"
         }
       ],
       "demo": [
@@ -6246,6 +6648,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "notebook",
+          "option": "1-pack"
         }
       ],
       "demo": [
@@ -6299,6 +6707,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "notebook",
+          "option": "3-pack"
         }
       ],
       "demo": [
@@ -6362,6 +6776,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "notebook",
+          "option": "3-pack"
         }
       ],
       "demo": [
@@ -6415,6 +6835,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "bottle",
+          "option": "500 ml"
         }
       ],
       "demo": [
@@ -6478,6 +6904,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "bottle",
+          "option": "500 ml"
         }
       ],
       "demo": [
@@ -6531,6 +6963,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "bottle",
+          "option": "1 L"
         }
       ],
       "demo": [
@@ -6594,6 +7032,12 @@
           "id": "on_cart_page",
           "check": "page_is",
           "route": "cart"
+        },
+        {
+          "id": "target_removed",
+          "check": "cart_not_contains",
+          "product_id": "bottle",
+          "option": "1 L"
         }
       ],
       "demo": [

@@ -11,3 +11,6 @@ policy:
 
 prompt:
   mode: plan_then_act
+
+tasks:
+  path: data/tasks/mock_shop_v1.json   # the 108 generated tasks; base.yaml keeps the 8-task sample

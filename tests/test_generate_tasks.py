@@ -7,7 +7,7 @@ import pytest
 from browser_agent import generate_tasks as gen
 from browser_agent.policy import ScriptedPolicy
 from browser_agent.rollout import make_env, run_episode
-from browser_agent.tasks import load_tasks
+from browser_agent.tasks import load_tasks, run_check
 from conftest import CONFIG_DIR, REPO_ROOT
 
 V1_PATH = REPO_ROOT / "data" / "tasks" / "mock_shop_v1.json"
@@ -98,6 +98,49 @@ def test_expected_carts_follow_from_initial_state():
             assert len(changed) == 1
         products = [i["product_id"] for i in initial]
         assert len(products) == len(set(products)), f"{task.id}: duplicate product in cart"
+
+
+SUBGOALS = {
+    "add_to_cart": ["searched", "on_product_page", "product_in_cart"],
+    "update_quantity": ["on_cart_page", "quantity_updated"],
+    "remove_item": ["on_cart_page", "target_removed"],
+}
+
+
+def _reset_state(task) -> dict:
+    """The site state right after reset: home page, no search, the task's initial cart."""
+    return {"page": "home", "last_search": "", "cart": task.initial_state.get("cart", [])}
+
+
+def test_subgoals_follow_the_sample_file_conventions():
+    """Same subgoals as the hand-written tasks, and cart subgoals name the target's option."""
+    for task in V1_TASKS:
+        assert [s.id for s in task.subgoals] == SUBGOALS[task.family], task.id
+        product_id, option = _target(task)
+        for s in task.subgoals:
+            if s.check.startswith("cart_"):
+                assert s.params["product_id"] == product_id, task.id
+                assert s.params["option"] == option, task.id
+
+
+def test_no_subgoal_holds_at_reset():
+    """Otherwise the bonus would be free: the agent would earn it without doing anything."""
+    for task in V1_TASKS:
+        held = [s.id for s in task.subgoals if run_check(s, _reset_state(task))]
+        assert not held, f"{task.id}: {held} already hold at reset"
+
+
+def test_wrong_variant_does_not_earn_product_in_cart():
+    for task in V1_TASKS:
+        if task.family != "add_to_cart":
+            continue
+        product_id, option = _target(task)
+        (product,) = [p for p in gen.CATALOG if p.id == product_id]
+        (subgoal,) = [s for s in task.subgoals if s.id == "product_in_cart"]
+        for other in product.options:
+            line = {"product_id": product_id, "option": other, "quantity": 1}
+            state = {"page": "cart", "last_search": "", "cart": [line]}
+            assert run_check(subgoal, state) == (other == option), f"{task.id}: {other}"
 
 
 def test_ids_do_not_collide_with_sample_file():

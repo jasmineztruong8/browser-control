@@ -107,7 +107,7 @@ Each run writes its fully resolved config to `runs/<run_id>/config.yaml`, so any
 
 | Key | Default | Description |
 | --- | --- | --- |
-| `path` | `data/tasks/mock_shop.json` | Task file |
+| `path` | `data/tasks/mock_shop.json` | Task file. The 8-task sample is the default, for the quickstart and tests. `sft.yaml`, `rloo.yaml` (and the GRPO configs that inherit it) and `eval_plan_then_act.yaml` use the 108 generated tasks in `mock_shop_v1.json` |
 | `split` | `train` | `train`, `val`, `test` or `null` for all |
 | `families` | `null` | Only these workflow families, e.g. `[add_to_cart]` |
 | `limit` | `null` | Only the first N matching tasks |
