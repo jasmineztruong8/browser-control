@@ -42,6 +42,10 @@ pytest -q
 ruff check src tests
 ```
 
+## Compute pilot
+
+[`notebooks/compute_pilot.ipynb`](notebooks/compute_pilot.ipynb) checks that the model trains on a Colab GPU and measures the cost of each stage: memory, SFT step time, rollout and RL-update time, and an adapter save/reload. It ends with RL interactions per GPU hour and the GPU hours for a given budget. To run it, open it in Colab (*File → Open notebook → GitHub*, then paste this repo's URL), select a GPU runtime and choose *Run all*. Results are written to `runs/<timestamp>-pilot/`.
+
 ## Repository layout
 
 ```
@@ -61,6 +65,7 @@ experiments/configs/    base.yaml + one config per experimental condition
 data/                   task files and data documentation
 demo/                   runnable demo
 results/                curated metrics and figures for the report
+notebooks/              Colab notebooks (compute pilot)
 tests/                  unit, integration and browser smoke tests
 docs/                   project documentation
 ```
