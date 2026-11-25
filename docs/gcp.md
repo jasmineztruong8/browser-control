@@ -9,9 +9,17 @@ How to get a GPU VM on Google Cloud and run the compute pilot on it. The same VM
 | Machine | `g2-standard-8`: 8 vCPUs, 32 GB RAM, 1× NVIDIA L4 (24 GB, supports bf16) |
 | Image | Google's Deep Learning VM (Ubuntu with CUDA; the NVIDIA driver installs on first boot) |
 | Disk | 150 GB |
+| Network | no public IP: SSH goes through Google's IAP tunnel, and downloads go out through Cloud NAT |
 | Safety net | the VM stops itself 8 hours after each start |
 
 **Cost.** A `g2-standard-8` costs roughly $0.70–0.90 per hour while it's running in `us-central1`. Check the [GPU pricing page](https://cloud.google.com/compute/gpus-pricing) for current numbers. A stopped VM costs only its disk, about $15 a month for 150 GB. A pilot run is well under an hour. To save more, set `SPOT=true` for a Spot VM at roughly a third of the price. Google can stop a Spot VM at any time, which is fine for the pilot but not for long training runs without checkpoints.
+
+**Why no public IP.** Columbia's Google Cloud organization forbids public IPs on VMs (the `compute.vmExternalIpAccess` policy). So `vm.sh create` first sets up, once per project:
+
+- a firewall rule letting Google's IAP service reach the VM's SSH port
+- a Cloud Router and Cloud NAT, so the VM can download packages and the model
+
+Nothing on the internet can connect to the VM. Cloud NAT adds a few cents per GB downloaded, under $1 for the pilot. `vm.sh ssh`, `setup`, `pilot` and `fetch` use the tunnel automatically.
 
 All settings are in [`scripts/gcp/config.env`](../scripts/gcp/config.env) with comments. For example, `MACHINE_TYPE=n1-standard-8 GPU_TYPE=nvidia-tesla-t4` gives a cheaper T4.
 
@@ -108,6 +116,8 @@ On the VM, the rest of the repo works as usual, e.g. `.venv/bin/python -m browse
 
 - **`ZONE_RESOURCE_POOL_EXHAUSTED` or "does not have enough resources".** GPUs are in short supply in that zone right now. Try another: `ZONE=us-central1-b scripts/gcp/vm.sh create`. Other zones with L4s include `us-central1-c`, `us-east4-a` and `us-west1-a`. Your quota must cover the zone's region.
 - **`Quota 'GPUS_ALL_REGIONS' exceeded`** or a similar quota error. Step 3 hasn't been approved yet, or it was approved for a different region.
+- **`Constraint constraints/compute.vmExternalIpAccess violated`.** You're on an old `vm.sh`, or `EXTERNAL_IP=true` is set. Columbia projects need the default `EXTERNAL_IP=false`.
+- **SSH fails with an IAP error (e.g. `failed to connect to backend`, error 4003).** The VM may still be booting, so wait a minute and retry. If it keeps failing, rerun `scripts/gcp/vm.sh create`. It re-adds the firewall rule, and then fails harmlessly because the VM already exists.
 - **`setup` says there's no NVIDIA driver.** The first boot can take a while. Wait a minute and run `setup` again. If that fails, run `scripts/gcp/vm.sh ssh`, then `sudo reboot`.
 - **`There was a problem refreshing your current auth tokens`.** Your sign-in expired. Run `gcloud auth login` again.
 - **The VM stopped on its own.** That's the `MAX_RUN_HOURS` safety net, or a Spot VM being reclaimed. Run `scripts/gcp/vm.sh start`. For long training runs, raise the limit: `MAX_RUN_HOURS=24 scripts/gcp/vm.sh create`. For an existing VM, change it in the console.

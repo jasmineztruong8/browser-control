@@ -31,8 +31,36 @@ command -v gcloud >/dev/null || die "gcloud not found: install the Google Cloud 
 
 GC=(gcloud --project "$PROJECT")
 ZONE_ARGS=(--zone "$ZONE")
+REGION="${ZONE%-*}" # us-central1-a -> us-central1
 
-remote() { "${GC[@]}" compute ssh "$VM_NAME" "${ZONE_ARGS[@]}" --command "$1"; }
+# Without a public IP, ssh and scp go through Google's IAP tunnel instead.
+SSH_ARGS=("${ZONE_ARGS[@]}")
+[[ "$EXTERNAL_IP" == "true" ]] || SSH_ARGS+=(--tunnel-through-iap)
+
+remote() { "${GC[@]}" compute ssh "$VM_NAME" "${SSH_ARGS[@]}" --command "$1"; }
+
+# A VM without a public IP still needs outbound internet (git, pip, the model download, apt).
+# Cloud NAT provides that without letting anything in. IAP needs SSH open to Google's IAP range.
+# Safe to rerun: each piece is only created if it's missing.
+ensure_private_networking() {
+  local router="browser-agent-router" nat="browser-agent-nat" rule="allow-ssh-from-iap"
+  "${GC[@]}" services enable iap.googleapis.com
+  if ! "${GC[@]}" compute firewall-rules describe "$rule" >/dev/null 2>&1; then
+    echo "Allowing SSH from Google's IAP range (35.235.240.0/20)"
+    "${GC[@]}" compute firewall-rules create "$rule" --network default \
+      --direction INGRESS --allow tcp:22 --source-ranges 35.235.240.0/20
+  fi
+  if ! "${GC[@]}" compute routers describe "$router" --region "$REGION" >/dev/null 2>&1; then
+    echo "Creating Cloud Router $router in $REGION"
+    "${GC[@]}" compute routers create "$router" --network default --region "$REGION"
+  fi
+  if ! "${GC[@]}" compute routers nats describe "$nat" --router "$router" --region "$REGION" \
+    >/dev/null 2>&1; then
+    echo "Creating Cloud NAT $nat (outbound internet for the VM)"
+    "${GC[@]}" compute routers nats create "$nat" --router "$router" --region "$REGION" \
+      --auto-allocate-nat-external-ips --nat-all-subnet-ip-ranges
+  fi
+}
 
 current_branch() {
   if [[ -n "$BRANCH" ]]; then
@@ -87,6 +115,10 @@ cmd_create() {
     --metadata install-nvidia-driver=True
     --scopes cloud-platform
   )
+  if [[ "$EXTERNAL_IP" != "true" ]]; then
+    ensure_private_networking
+    args+=(--no-address)
+  fi
   [[ -n "$GPU_TYPE" ]] && args+=(--accelerator "type=$GPU_TYPE,count=$GPU_COUNT")
   [[ "$SPOT" == "true" ]] && args+=(--provisioning-model SPOT)
   [[ "$MAX_RUN_HOURS" != "0" ]] && args+=(--max-run-duration "${MAX_RUN_HOURS}h")
@@ -127,7 +159,7 @@ cmd_logs() { remote "tail -n 200 -f $REMOTE_DIR/runs/pilot.log"; }
 cmd_fetch() {
   local dest="$REPO_ROOT/runs/gcp"
   mkdir -p "$dest"
-  "${GC[@]}" compute scp --recurse "${ZONE_ARGS[@]}" "$VM_NAME:$REMOTE_DIR/runs/*" "$dest/"
+  "${GC[@]}" compute scp --recurse "${SSH_ARGS[@]}" "$VM_NAME:$REMOTE_DIR/runs/*" "$dest/"
   echo "Copied to $dest"
 }
 
@@ -137,7 +169,7 @@ case "${1:-}" in
   pilot) shift && cmd_pilot "$@" ;;
   logs) cmd_logs ;;
   fetch) cmd_fetch ;;
-  ssh) "${GC[@]}" compute ssh "$VM_NAME" "${ZONE_ARGS[@]}" ;;
+  ssh) "${GC[@]}" compute ssh "$VM_NAME" "${SSH_ARGS[@]}" ;;
   status)
     "${GC[@]}" compute instances describe "$VM_NAME" "${ZONE_ARGS[@]}" \
       --format="table(name,status,machineType.basename(),scheduling.provisioningModel)"
