@@ -72,7 +72,8 @@ def test_subgoals_count_once(mug_task):
     assert tracker.update(state(search="blue mug")) == ["searched"]
     assert tracker.update(state(search="blue mug")) == []  # repeating earns nothing
     assert tracker.update(state(page="product/mug", search="mug")) == ["on_product_page"]
-    assert tracker.update(state(("mug", "Red", 1), page="product/mug")) == ["product_in_cart"]
+    assert tracker.update(state(("mug", "Red", 1), page="product/mug")) == []  # wrong variant
+    assert tracker.update(state(("mug", "Blue", 1), page="product/mug")) == ["product_in_cart"]
     assert tracker.hit == ["searched", "on_product_page", "product_in_cart"]
 
 

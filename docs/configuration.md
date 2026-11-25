@@ -100,6 +100,7 @@ Each run writes its fully resolved config to `runs/<run_id>/config.yaml`, so any
 | `success_reward` | `1.0` | Reward for task success |
 | `subgoal_bonus` | `0.1` | Bonus per verified subgoal (`subgoal` only). Each subgoal counts once |
 | `subgoal_cap` | `0.3` | Maximum total bonus. Must be less than `success_reward` |
+| `subgoal_normalize` | `false` | If true, bonus = `subgoal_cap` × fraction of the task's subgoals hit (ignores `subgoal_bonus`), so every task family has the same maximum bonus. On in `grpo_subgoal.yaml` |
 | `require_stop` | `true` | Success also requires the agent to issue `stop` |
 
 ### `tasks`

@@ -6,3 +6,4 @@ run:
 
 reward:
   type: subgoal
+  subgoal_normalize: true   # equal max bonus across task families

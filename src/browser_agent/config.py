@@ -94,6 +94,7 @@ class RewardConfig(_Section):
     success_reward: float = 1.0
     subgoal_bonus: float = 0.1
     subgoal_cap: float = 0.3
+    subgoal_normalize: bool = False
     require_stop: bool = True
 
     @model_validator(mode="after")

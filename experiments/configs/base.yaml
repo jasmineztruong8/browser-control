@@ -52,6 +52,7 @@ reward:
   success_reward: 1.0
   subgoal_bonus: 0.1
   subgoal_cap: 0.3           # must be < success_reward
+  subgoal_normalize: false   # true: bonus = cap * fraction of the task's subgoals hit
   require_stop: true
 
 tasks:
