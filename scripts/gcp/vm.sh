@@ -65,9 +65,10 @@ sync_code() {
 }
 
 newest_image_family() {
+  # Filtered here rather than with --filter, which rejects regex combinations like these.
   gcloud compute images list --project deeplearning-platform-release --no-standard-images \
-    --filter="family~^common-cu AND family~ubuntu AND -family~arm" \
-    --format="value(family)" | sort -uV | tail -1
+    --format="value(family)" | grep -E '^common-cu.*ubuntu' | grep -v -E 'arm|aarch' |
+    sort -uV | tail -1
 }
 
 cmd_create() {
