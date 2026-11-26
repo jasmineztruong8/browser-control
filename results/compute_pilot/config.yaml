@@ -1,0 +1,77 @@
+run:
+  name: rloo
+  output_dir: runs
+  seed: 0
+  save_prompts: true
+env:
+  name: mock_shop
+  start_url: null
+  headless: true
+  max_steps: 12
+  action_timeout_ms: 5000
+  navigation_timeout_ms: 15000
+  settle_ms: 100
+  scroll_pixels: 600
+  viewport:
+    width: 1280
+    height: 800
+observation:
+  max_elements: 60
+  max_label_chars: 80
+  max_options: 10
+  include_page_text: true
+  max_page_text_chars: 600
+  max_errors: 5
+agent:
+  allowed_actions:
+  - click
+  - type
+  - scroll
+  - stop
+  history_length: 3
+  max_consecutive_invalid: 3
+prompt:
+  mode: action_only
+  template_dir: null
+policy:
+  name: hf
+  model_name: Qwen/Qwen2.5-3B-Instruct
+  adapter_path: null
+  load_in_4bit: true
+  compute_dtype: bfloat16
+  device_map: auto
+  max_new_tokens: 96
+  temperature: 0.7
+  top_p: 1.0
+reward:
+  type: binary
+  success_reward: 1.0
+  subgoal_bonus: 0.1
+  subgoal_cap: 0.3
+  require_stop: true
+tasks:
+  path: data/tasks/mock_shop.json
+  split: train
+  families: null
+  limit: null
+training:
+  method: rloo
+  init_checkpoint: checkpoints/sft
+  output_dir: checkpoints
+  learning_rate: 1.0e-05
+  epochs: 1
+  batch_size: 4
+  grad_accum_steps: 4
+  group_size: 4
+  max_env_interactions: null
+  kl_coef: 0.0
+  gradient_checkpointing: true
+  lora:
+    r: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
