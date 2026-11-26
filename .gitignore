@@ -19,3 +19,6 @@ wandb/
 .DS_Store
 .idea/
 .vscode/
+
+# Personal GCP settings (project id etc.)
+scripts/gcp/config.local.env

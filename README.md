@@ -42,6 +42,13 @@ pytest -q
 ruff check src tests
 ```
 
+## Compute pilot
+
+[`notebooks/compute_pilot.ipynb`](notebooks/compute_pilot.ipynb) checks that the model trains on a Colab GPU and measures the cost of each stage: memory, SFT step time, rollout and RL-update time, and an adapter save/reload. It ends with RL interactions per GPU hour and the GPU hours for a given budget. Results are written to `runs/<timestamp>-pilot/`. You can run it in two places:
+
+- **Google Cloud:** `scripts/gcp/vm.sh create`, then `setup`, then `pilot`. See [docs/gcp.md](docs/gcp.md) for the one-time project and GPU quota setup. The same VM is used for training.
+- **Colab:** *File → Open notebook → GitHub*, paste this repo's URL, select a GPU runtime and choose *Run all*.
+
 ## Repository layout
 
 ```
@@ -62,6 +69,8 @@ experiments/configs/    base.yaml + one config per experimental condition
 data/                   task files and data documentation
 demo/                   runnable demo
 results/                curated metrics and figures for the report
+notebooks/              notebooks (compute pilot), runnable on Colab or a GCP VM
+scripts/gcp/            create and manage the team's GPU VM on Google Cloud
 tests/                  unit, integration and browser smoke tests
 docs/                   project documentation
 ```
@@ -73,4 +82,5 @@ docs/                   project documentation
 - [Roadmap](docs/roadmap.md): schedule, team responsibilities and experiment plan
 - [Architecture](docs/architecture.md): how the components fit together and who owns each
 - [Configuration](docs/configuration.md): every config key, its default and how to override it
+- [Google Cloud](docs/gcp.md): setting up the project and running the GPU VM
 - [Data](data/README.md): task file format and how to generate demonstrations
