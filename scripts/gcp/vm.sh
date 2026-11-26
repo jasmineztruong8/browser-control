@@ -34,6 +34,19 @@ die() {
 [[ -n "$PROJECT" ]] || die "set PROJECT in scripts/gcp/config.local.env (see docs/gcp.md)"
 command -v gcloud >/dev/null || die "gcloud not found: install the Google Cloud CLI first"
 
+# gcloud crashes on Python 3.9 (macOS's default python3). Point it at a newer one if we can.
+if [[ -z "${CLOUDSDK_PYTHON:-}" ]]; then
+  for py in python3.13 python3.12 python3.11 python3.10 python3 /opt/homebrew/bin/python3 \
+    /Applications/anaconda3/bin/python3 "$HOME"/{anaconda3,miniconda3,opt/anaconda3}/bin/python3; do
+    if command -v "$py" >/dev/null &&
+      "$py" -c 'import sys; sys.exit(sys.version_info < (3, 10))' 2>/dev/null; then
+      CLOUDSDK_PYTHON="$(command -v "$py")"
+      export CLOUDSDK_PYTHON
+      break
+    fi
+  done
+fi
+
 GC=(gcloud --project "$PROJECT")
 ZONE_ARGS=(--zone "$ZONE")
 REGION="${ZONE%-*}" # us-central1-a -> us-central1
