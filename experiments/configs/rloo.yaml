@@ -15,3 +15,6 @@ training:
   method: rloo
   init_checkpoint: checkpoints/sft   # same SFT checkpoint for every RL condition
   group_size: 4
+
+tasks:
+  path: data/tasks/mock_shop_v1.json   # the 108 generated tasks; base.yaml keeps the 8-task sample
