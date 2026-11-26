@@ -14,10 +14,15 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$HERE/../.." && pwd)"
 REMOTE_DIR="browser-control" # relative to the VM user's home directory
 
-# Settings from the command-line environment win, then config.local.env, then config.env.
-# config.env only fills in variables that are still unset, so loading local first is enough.
+# Settings from the command-line environment win (ZONE=... vm.sh create), then
+# config.local.env, then config.env. config.local.env uses plain assignments, so remember
+# what the environment set and put it back afterwards; config.env only fills in what's unset.
+SETTINGS=(PROJECT ZONE VM_NAME MACHINE_TYPE GPU_TYPE GPU_COUNT IMAGE_FAMILY DISK_GB SPOT
+  EXTERNAL_IP MAX_RUN_HOURS REPO_URL BRANCH)
+env_settings="$(for v in "${SETTINGS[@]}"; do if [[ -n "${!v+x}" ]]; then declare -p "$v"; fi; done)"
 # shellcheck source=/dev/null
 [[ -f "$HERE/config.local.env" ]] && source "$HERE/config.local.env"
+eval "$env_settings"
 # shellcheck source-path=SCRIPTDIR
 source "$HERE/config.env"
 
