@@ -135,6 +135,10 @@ class TrainingConfig(_Section):
     max_env_interactions: int | None = None  # browser-step budget, matched across RL runs
     kl_coef: float = 0.0
     gradient_checkpointing: bool = True
+    warmup_ratio: float = Field(0.1, ge=0.0, lt=1.0)  # linear warmup, then linear decay to 0
+    max_grad_norm: float | None = 1.0  # gradient clipping; null turns it off
+    demos_path: str | None = None  # SFT: demo trajectories.jsonl; null = collect with scripted
+    val_rollouts: bool = True  # SFT: greedy val episodes each epoch to pick the checkpoint
     lora: LoraConfig = Field(default_factory=LoraConfig)
 
 

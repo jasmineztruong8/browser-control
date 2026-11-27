@@ -68,3 +68,5 @@ python -m browser_agent.rollout --set tasks.path=data/tasks/mock_shop_v1.json ta
 ```
 
 The trajectories are written to `runs/<run_id>/trajectories.jsonl`. Every task in `mock_shop_v1.json` has a working demo, so the run should report `success_rate: 1.0`; drop any episode that did not succeed before using the file for SFT.
+
+You don't need to do this by hand for SFT: `python -m browser_agent.training.sft` collects the `train` and `val` demos itself, drops failed episodes and saves what it used to `runs/<run_id>/demos.jsonl`. To train on a fixed file instead, pass `--set training.demos_path=<file>`. Its trajectories are split into train and val by each one's `metadata.split`, so collect it with `tasks.split=null` to get both.

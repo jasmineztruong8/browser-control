@@ -40,6 +40,9 @@ Every part of the project (collecting demonstrations, SFT, RLOO, GRPO, evaluatio
 | `prompts/` | Editable prompt templates for `action_only` and `plan_then_act` |
 | `policy.py` | `Policy` interface, `scripted` demo replayer, `hf` Hugging Face model |
 | `rollout.py` | Episode loop, run summary and command-line entry point |
+| `training/data.py` | Demo trajectories → SFT examples (prompt messages → action text). No torch |
+| `training/common.py` | Trainable LoRA policy, prompt-masked tokenization, batching, LR schedule. Shared by the SFT and RL trainers |
+| `training/sft.py` | Condition A trainer and CLI: collect demos, train, select the epoch by validation success |
 
 ## Key design decisions
 

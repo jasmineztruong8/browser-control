@@ -42,6 +42,22 @@ pytest -q
 ruff check src tests
 ```
 
+## SFT baseline (Condition A)
+
+On the GPU machine (e.g. the GCP VM, see [docs/gcp.md](docs/gcp.md)):
+
+```bash
+python -m browser_agent.training.sft --config experiments/configs/sft.yaml
+```
+
+This replays the scripted demos on the `train` and `val` tasks of `mock_shop_v1.json`, and trains a LoRA adapter on every demo step, with the loss on the action tokens only. After each epoch it runs the `val` tasks greedily in the browser. It keeps the epoch with the highest validation success and copies it to `checkpoints/sft`, the checkpoint every RL config starts from. Epoch 0 in the logs is the untrained base model, for reference. With the default settings (3 epochs, about 300 examples) it takes a few minutes on an L4. Logs go to `runs/<run_id>/`: `metrics.jsonl`, `val_epoch<k>.jsonl` and `summary.json`.
+
+Evaluate the adapter on held-out tasks with the normal rollout command:
+
+```bash
+python -m browser_agent.rollout --config experiments/configs/sft.yaml --set policy.adapter_path=checkpoints/sft tasks.split=test
+```
+
 ## Compute pilot
 
 [`notebooks/compute_pilot.ipynb`](notebooks/compute_pilot.ipynb) checks that the model trains on a Colab GPU and measures the cost of each stage: memory, SFT step time, rollout and RL-update time, and an adapter save/reload. It ends with RL interactions per GPU hour and the GPU hours for a given budget. Results are written to `runs/<timestamp>-pilot/`. You can run it in two places:
@@ -65,6 +81,7 @@ src/browser_agent/      shared code used by experiments and the demo
   generate_tasks.py     mock-shop task generator with versioned train/val/test splits
   rewards.py            binary and subgoal rewards
   rollout.py            episode loop + CLI
+  training/             SFT trainer (RLOO / GRPO next) and shared model/tokenization helpers
 experiments/configs/    base.yaml + one config per experimental condition
 data/                   task files and data documentation
 demo/                   runnable demo

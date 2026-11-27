@@ -73,6 +73,10 @@ training:
   max_env_interactions: null
   kl_coef: 0.0
   gradient_checkpointing: true
+  warmup_ratio: 0.1          # linear warmup over this fraction of steps, then linear decay
+  max_grad_norm: 1.0         # gradient clipping; null = off
+  demos_path: null           # SFT: trajectories.jsonl of demos; null = collect them with the scripted policy
+  val_rollouts: true         # SFT: run greedy val episodes after each epoch to select the checkpoint
   lora:
     r: 16
     alpha: 32

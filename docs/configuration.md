@@ -129,6 +129,10 @@ Shared by the SFT and RL trainers.
 | `max_env_interactions` | `null` | Browser-step budget, matched across RL conditions |
 | `kl_coef` | `0.0` | KL penalty to the reference policy |
 | `gradient_checkpointing` | `true` | Trade compute for memory |
+| `warmup_ratio` | `0.1` | Fraction of optimizer steps with linear LR warmup; the LR then decays linearly to 0 |
+| `max_grad_norm` | `1.0` | Gradient clipping norm. `null` turns clipping off |
+| `demos_path` | `null` | SFT: a `trajectories.jsonl` of demonstrations. `null` collects them with the scripted policy on the `train` and `val` splits of `tasks.path` |
+| `val_rollouts` | `true` | SFT: after each epoch, run greedy episodes on the `val` split and keep the checkpoint with the highest success (ties go to lower validation loss). `false` selects by validation loss only |
 | `lora.r`, `lora.alpha`, `lora.dropout`, `lora.target_modules` | `16`, `32`, `0.05`, `[q_proj, k_proj, v_proj, o_proj]` | LoRA adapter settings |
 
 ## Adding a new key
