@@ -89,3 +89,20 @@ def test_env_file_is_loaded(monkeypatch, tmp_path):
     cfg_file.write_text("run:\n  output_dir: ${MY_RUNS}\n")
     cfg = load_config(cfg_file, env_file=env_file)
     assert cfg.run.output_dir == "/tmp/my-runs"
+
+
+def test_env_file_skips_blank_values_and_keeps_existing(tmp_path, monkeypatch):
+    from browser_agent.config import load_env_file
+
+    env = tmp_path / ".env"
+    env.write_text("BA_TEST_BLANK=\nBA_TEST_SET=from_file\nBA_TEST_KEEP=from_file\n")
+    monkeypatch.delenv("BA_TEST_BLANK", raising=False)
+    monkeypatch.delenv("BA_TEST_SET", raising=False)
+    monkeypatch.setenv("BA_TEST_KEEP", "from_shell")
+    load_env_file(env)
+    import os
+
+    assert "BA_TEST_BLANK" not in os.environ
+    assert os.environ["BA_TEST_SET"] == "from_file"
+    assert os.environ["BA_TEST_KEEP"] == "from_shell"
+    monkeypatch.delenv("BA_TEST_SET")

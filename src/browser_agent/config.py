@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import Any, Literal
 
 import yaml
-from dotenv import load_dotenv
+from dotenv import dotenv_values
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
 
 ActionName = Literal["click", "type", "scroll", "stop"]
@@ -245,13 +245,25 @@ def _check_component_names(cfg: Config) -> None:
             )
 
 
+def load_env_file(path: str | Path) -> None:
+    """Load ``.env`` into the environment without overriding variables that are already set.
+
+    Blank entries (``HF_HOME=``, as in ``.env.example``) are skipped: an empty ``HF_HOME``
+    makes Hugging Face cache models in the current directory, and an empty ``HF_TOKEN`` is
+    sent as an invalid token.
+    """
+    for key, value in dotenv_values(path).items():
+        if value and key not in os.environ:
+            os.environ[key] = value
+
+
 def load_config(
     path: str | Path | None = None,
     overrides: Iterable[str] = (),
     env_file: str | Path | None = ".env",
 ) -> Config:
     if env_file and Path(env_file).exists():
-        load_dotenv(env_file, override=False)
+        load_env_file(env_file)
     data: dict[str, Any] = _read_yaml(Path(path)) if path else {}
     for item in overrides:
         data = deep_merge(data, parse_override(item))
